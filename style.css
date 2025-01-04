@@ -1,0 +1,160 @@
+*{
+  margin: 0;
+  padding: 0;
+  /* se colocar um padding no elemento, não vai fazer o falor de height e width  ir para o ceu e não valer mais, ou seja a medida do tamanho da caixa seja medida atraves da borda e mantem 360px do width*/
+  box-sizing: border-box;
+}
+:root{
+  --bg-url: url(./assets/bg-mobile.jpg);
+  --text-color:white;
+  --stroke-color:rgba(255, 255, 255,0.5);
+  --surface-color: rgba(255, 255, 255,0.05);
+  --surface-color-hover: rgba(0, 0, 0,0.02);
+  --highlight-color: rgba(255, 255, 255,0.2);
+  --switch-bg-url: url(./assets/moon-stars.svg);
+}
+.light{
+  --bg-url: url(./assets/bg-mobile-light.jpg) no-repeat top center/cover;
+  --text-color:black;
+  --stroke-color:rgba(0, 0, 0,0.5);
+  --surface-color: rgba(0, 0, 0,0.05);
+  --surface-color-hover: rgba(0, 0, 0,0.02);
+  --highlight-color: rgba(0,0,0,0.1);
+   --switch-bg-url: url(./assets/sun.svg);
+}
+body{
+  /* background-image: url(./assets/bg-mobile.jpg);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover; */
+
+  /* background color image repeat position/size */
+  /* background: url(./assets/bg-mobile.jpg) no-repeat top center/cover; */
+  background: var(--bg-url) no-repeat top center/cover;
+}
+
+body *{
+  font-family: 'Inter', sans-serif;
+   color: var(--text-color);
+}
+
+#container{
+  width: 360px;
+  margin: 56px auto 0px;
+  padding: 0 24px;
+}
+/* switch */
+#switch{
+  /*O absoluto vai ser relativo a esse elemento de switch  */
+  position: relative;
+  width: 64px;
+  margin: 4px auto;
+}
+#switch button{
+  width: 32px;
+  height: 32px;
+  background: white var(--switch-bg-url) no-repeat center;
+  border: 0;
+  border-radius: 50%;
+/* position: absolute; faz sobreposição de camadas 
+pq antes do position absolute ambos estavam no 'Andar terreo do predio, porem com o posion absolute ele define que eles podem se sobrepor, um ficando num andar acima do outro*/
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 1;/* muda os andares dos elementos */
+  transform: translateY(-50%);
+}
+.light #switch button{
+  right: 0;
+  left: initial; 
+}
+#switch span{
+  display: block;
+  width: 64px;
+  height: 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 9999px;
+}
+/* profile */
+#profile{
+  /* todos os elementos filhos vão aceitar se o pai dele falar o lugar onde ele fica como aqui o text-align:center sem precisar q a teg inline filho mude para block e receba margin auto */
+  text-align: center;
+  padding: 24px;
+}
+
+#profile img{
+  /* foi add o display block pq image tem propriedade inline por isso não funciona o margin auto, mas alterando para block funciona */
+  width: 112px;
+  /* display: block;
+  margin: auto; */
+}
+
+#profile p{
+  font-weight: 500;
+  line-height: 24px;
+  margin-top: 8px;
+}
+
+ul{
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  padding: 24px 0;
+  
+}
+ul li a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 24px;
+
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  text-decoration: none;
+  font-weight: 500;
+  
+  /* para quando acontecer o hover, ficar mais natural */
+  transition: background 0.2s;
+}
+/*pseudo-selector(sudo selector) (ul li a:hover)
+aplica as coisas quando passar o mouse em cima
+ */
+ul li a:hover{
+  background: var(--surface-color-hover);
+  border: 1.5px solid var(--text-color);
+}
+/* social links */
+#social-links{
+  display: flex;
+  justify-content: center;
+  
+  padding: 24px 0;
+
+  font-size: 24px;
+}
+#social-links a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+
+  transition: background 0.2s;
+  border-radius: 50%;
+}
+#social-links a:hover{
+  background: var(--highlight-color);
+}
+footer{
+  padding: 24px 0;
+  text-align: center;
+  font-size: 14px;
+}
